@@ -1,0 +1,148 @@
+Recipe:-
+======
+
+	Ø Instructions - Food prepare manual 
+	Ø Ingredians - app code, lib, dep, env, compnts
+
+Food:- it’s a final output
+
+Serve the prepared food to the people
+
+====================================
+
+Instructions:- in Dockerfile
+Docker image :- prepared food
+Container :- serve the food so person can eat it.
+
+Wt is Dockerfile
+=============
+
+	Ø Whenever you want to write any dockerfile you should have app source code
+	Ø Dockerfile name should be like this only " Dockerfile"
+
+FROM:- it is used to specify a base image for the application .
+
+FROM ubuntu:latest - for static web application
+
+FROM  node:latest
+
+FROM python:3.10-alpine3.24
+
+===========================================================================
+
+MAINTAINER:- it is use for to define dockerfile author or owner
+
+MAINTAINER davidprabhakr526@gmail.com  or Y david Prabhakar
+
+======================================================
+
+WORKDIR:- it is used to create a working directory inside the container to contain app src, lib, depn, files and folders
+
+WORKDIR /app
+
+WORDKRI /ayyanna
+
+WORKDIR /david
+
+==================================================================
+
+COPY:- it is used to copy app source code from local machine to container machine
+
+COPY <scr code location>  <destination location>
+
+COPY index.html /var/www/html
+
+COPY . .
+
+====================================================================
+
+ADD:- it is used to handle URL's in dockerfile 
+
+ADD https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.121/bin/apache-tomcat-9.0.121-windows-x86.zip
+
+ADD https://www.java.com/en/download/linux_manual.jsp
+
+=======================================================================================
+
+	Ø Dockerfile will build image in two stages
+	1. Build time  - commands should be execute while building the docker image
+	2. RUN time  - commands should be execute while creating the container
+
+RUN:- it is used to execute commands while building the docker image
+
+RUN apt update -y
+
+RUN yum update -y
+
+RUN apt install apache2 -y
+
+RUN apt install java -y
+
+RUN apt install npm -y
+
+RUN apt install docker -y
+
+RUN apt install git -y
+
+RUN yum install java -y
+
+RUN yum install docker -y
+
+==========================================================================
+
+EXPOSE:- it is used to define or expose the application port number
+
+EXPOSE 9000
+
+EXPOSE 8000
+
+EXPOSE 3000
+
+=======================================================================
+
+CMD:- it will execute commands while creating the container to start the application inside the container 
+
+node start 
+
+Python app.py
+
+Python start
+
+CMD ["node", "start"]
+
+CMD ["node", "app.js"]
+
+CMD ["node", "server.js"]
+
+
+
+CMD ["python", "app.py"]
+
+	Ø CMD will overwrite commands
+
+=========================================================================
+
+ENTRYPOINT:- it will execute commands while creating the container to start app inside the container but it wont overwrite commands in  dockerfile
+
+ENTRPYPOINT ["node", "start"]
+
+Webservers
+=========
+	1. Apache web server
+	2. Nginx webser
+	3. Httpd web  serer
+
+	Ø Above all web servers will run on port no 80 and their default root dir is /var/www/html
+
+ENTRYPOINT ["apachectl", "-D", "FOREGROUND"]
+
+
+Apachectl:- it is a apache control interface and  it wil control or manage script for apache http server
+
+-D:- apache has a opt for deifneing a conf variable
+
+
+FOREGROUND:- it will run app in a background server is called foureground
+
+
+
