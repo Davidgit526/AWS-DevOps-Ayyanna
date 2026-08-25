@@ -1,0 +1,42 @@
+   7 docker build -t login-page:v1.0.0 .                                                                                                                  
+   8 docker images                                                                                                                                        
+   9 docker run -d --name login -p 81:80 login-apge:v1.0.0                                                                                                
+  10 docker run -d --name login -p 81:80 login-page:v1.0.0                                                                                                
+  11 docker ps                                                                                                                                            
+  12 docker build -t signup-page:v2.0.0 .                                                                                                                 
+  13 docker images                                                                                                                                        
+  14 docker run -d --name signup -p 82:80 signup-page:v2.0.0                                                                                              
+  15 docker ps                                                                                                                                            
+  16 docker exec -it login bash                                                                                                                           
+  17 docker images                                                                                                                                        
+  18 docker ps                                                                                                                                            
+  19 docker stop login                                                                                                                                    
+  20 docker ps                                                                                                                                            
+  21 docker ps -a                                                                                                                                         
+  22 docker restart login                                                                                                                                 
+  23 docker ps                                                                                                                                            
+  24 docker pause login                                                                                                                                   
+  25 docker ps                                                                                                                                            
+  26 docker unpasue login                                                                                                                                 
+  27 docker unpause                                                                                                                                       
+  28 docker unpause login                                                                                                                                 
+  29 docker ps                                                                                                                                            
+  30 docker rm login                                                                                                                                      
+  31 docker stop login                                                                                                                                    
+  32 docker ps                                                                                                                                            
+  33 docker ps -a                                                                                                                                         
+  34 docker rm login                                                                                                                                      
+  35 docker ps -a                                                                                                                                         
+  36 docker ps                                                                                                                                            
+  37 docker rm -f signup                                                                                                                                  
+  38 doker ps                                                                                                                                             
+  39 docker ps                                                                                                                                            
+  40 docker run -d --name login -p 81:80 login-page:v1.0.0                                                                                                
+  41 docker ps                                                                                                                                            
+  42 docker inspect login                                                                                                                                 
+  43 curl 172.17.0.2:80                                                                                                                                   
+  44 docker images                                                                                                                                        
+  45 docker tag login-page:v1.0.0 daviddocker526/login-page:v1.0.0                                                                                        
+  46 docker images                                                                                                                                        
+  47 docker login -u daviddocker526                                                                                                                       
+  48 docker push daviddocker526/login-page:v1.0.0 

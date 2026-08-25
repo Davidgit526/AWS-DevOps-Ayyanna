@@ -1,0 +1,40 @@
+docker run -d --name <c-name>  -p <host port no:c-port no>  <i-name>
+
+docker run :- it will do three things 1. it will pull the image from docker hub if not present in the server, 2. it will create the container, 3. it will start the container.
+
+-d:- detached mode :- you are going to running the container in a background
+
+--name: container meaningful name and name should be unique - login
+
+-p:- port mapping
+
+Host port:- it will be decide by the DevOps Team and it will be unique port number. 
+
+Container or app port number:- it will be decide by the dev team, same port number you can use for no.of containers.
+
+i-name: provide a docker image name
+
+
+container life cycle 
+===============
+
+docker create :- it will only create the container 
+docker run :- it will do three things 1. it will pull the image from docker hub if not present in the server, 2. it will create the container, 3. it will start the container.
+Docker ps:- to see only running contianers
+docker ps -a:- to see all containers including stopped containers aslo
+docker stop:- it will stop the contianer
+docker restart:- to restart container
+docker pause:- to pause the container
+docker rm:- to delete only stopped containers
+docker rm -f :- to delete running container by force remove
+docker inspect:- To see container details
+
+How to push docker images into docker hub or docker registry 
+===================================================
+
+docker tag:- docker tag <i-name>  daviddocker526/i-name
+docker login -u <user-name>
+docker push:- docker push daviddocker526/i-name
+
+
+
