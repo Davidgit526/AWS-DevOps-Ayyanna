@@ -1,0 +1,120 @@
+npm install
+
+Node start or node app.js or node server.js
+
+
+Docker compose
+==============
+
+Why?:- To dockerize multi container app
+
+Wt?:- 
+
+docker build -t bank-app:v1.0 .
+
+docker run -d --name bank -p 3000:3000 bank-app:v1.0
+
+Using docker compose we can build images, create containers, networks,volumes
+
+# docker compose commands
+
+    1  apt update -y
+    2  docker
+    3  apt install docker.io -y
+    4  docker --version
+    5  ls
+    6  git clone https://github.com/Macharla-Sharanya/Transaction-History.git
+    7  ls
+    8  cd Transaction-History/
+    9  ls
+   10  rm Dockerfile
+   11  ls
+   12  touch Dockerfile
+   13  ls
+   14  cat Dockerfile
+   15  vi Dockerfile
+   16  ls
+   17  cat Dockerfile
+   18  nano Dockerfile
+   19  cat Dockerfile
+   20  ls
+   21  docker images
+   22  docker ps -a
+   23  ls
+   24  docker build -t bank-app:v1.0 .
+   25  docker images
+   26  docker run -d --name bank -p 3000:3000 bank-app:v1.0
+   27  docker ps
+   28  docker logs bank
+   29  ls
+   30  mkdir node-app
+   31  ls
+   32  rm -rf node-app/
+   33  ls
+   34  mkdir frontend
+   35  ls
+   36  cd frontend/
+   37  ls
+   38  touh Dockerfile
+   39  touch Dockerfile
+   40  ls
+   41  pwd
+   42  cd ..
+   43  ls
+   44  docker rm -f bank
+   45  docker ps -a
+   46  docker images
+   47  ls
+   48  > docker-compose.yml
+   49  cat docker-compose.yml
+   50  nano docker-compose.yml
+   51  ls
+   52  cat docker-compose.yml
+   53  docker compose --version
+   54  curl -SL https://github.com/docker/compose/releases/download/v5.5.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+   55  chmod +x /usr/local/bin/docker-compose
+   56  docker-compose --version
+   57  ls
+   58  docker-compose up -d
+   59  docker ps
+   60  docker ps -a
+   61  docker logs bank
+   62  ls
+   63  docker logs mongodb
+   64  docker ps
+   65  docker-compose down
+   66  nano docker-compose.yml
+   67  docker-compose up -d
+   68  docker ps
+   69  docker ps -a
+   70  docker logs mongodb
+   71  docker logs transaction-history-mongodb-1
+   72  ls
+   73  cat docker-compose.yml
+   74  nano docker-compose.yml
+   75  docker-compose down
+   76  cat docker-compose.yml
+   77  docker-compose up -d --build
+   78  docker ps
+   79  docker ps -a
+   80  docker logs transaction-history-mongodb-1
+   81  docker-compose logs bank-svc --tail 50
+   82  docker ps
+   83  docker logs banl
+   84  docker logs bank
+   85  docker ps -a
+   86  docker exec bank printenv | grep MONGO
+   87  docker-compose down
+   88  nano docker-compose.yml
+   89  cat docker-compose.yml
+   90  docker-compose up -d
+   91  docker ps
+   92  docker ps -a
+   93  docker-compose up -d
+   94  docker-compose down
+   95  docker-compose up -d
+   96  docker ps
+   97  docker exec -it transaction-history-mongodb-1 mognosh
+   98  docker ps
+   99  docker ps -a
+  100  history
