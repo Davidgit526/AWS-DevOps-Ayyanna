@@ -1,0 +1,509 @@
+# mongodb login commands
+
+docker exec -it mongodb mongosh
+show dbs  --> to see database
+use <db-name> --> to switch to the database
+show collections  --> to see collections
+db.<collection-name>.find() --> to see actual data
+
+# docker volumes commands
+
+docker volume ls
+DRIVER    VOLUME NAME
+local     20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6
+local     a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1
+root@ip-172-31-21-215:/home/ubuntu/Transaction-History#
+root@ip-172-31-21-215:/home/ubuntu/Transaction-History#
+root@ip-172-31-21-215:/home/ubuntu/Transaction-History#
+root@ip-172-31-21-215:/home/ubuntu/Transaction-History# docker run -it --name c1 -v /demo-volume ubuntu /bin/bash
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+f3db1cd94078: Pull complete
+06e9d71331fb: Pull complete
+f79afc4bbefe: Download complete
+Digest: sha256:2260313b31c8c011cd2eebe728008efac1b3982be73eb71348ea2648d2c0e09b
+Status: Downloaded newer image for ubuntu:latest
+root@a551f247d8ce:/# ls
+bin  boot  demo-volume  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@a551f247d8ce:/# cd demo-volume/
+root@a551f247d8ce:/demo-volume# ls
+root@a551f247d8ce:/demo-volume# touch ipl bcci aca
+root@a551f247d8ce:/demo-volume# ls
+aca  bcci  ipl
+root@a551f247d8ce:/demo-volume# mkdir srh mi rcb rj
+root@a551f247d8ce:/demo-volume# ls
+aca  bcci  ipl  mi  rcb  rj  srh
+root@a551f247d8ce:/demo-volume# exit
+exit
+root@ip-172-31-21-215:/home/ubuntu/Transaction-History# docker ps
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS                                             NAMES
+271ea5afcf72   bank-app:v1.1   "docker-entrypoint.s…"   28 minutes ago   Up 28 minutes   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp       bank
+b39418654c61   mongo:7.0.40    "docker-entrypoint.s…"   28 minutes ago   Up 28 minutes   0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   mongodb
+root@ip-172-31-21-215:/home/ubuntu/Transaction-History# docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS                     PORTS                                             NAMES
+a551f247d8ce   ubuntu          "/bin/bash"              2 minutes ago    Exited (0) 7 seconds ago                                                     c1
+271ea5afcf72   bank-app:v1.1   "docker-entrypoint.s…"   28 minutes ago   Up 28 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp       bank
+b39418654c61   mongo:7.0.40    "docker-entrypoint.s…"   28 minutes ago   Up 28 minutes              0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   mongodb
+root@ip-172-31-21-215:/home/ubuntu/Transaction-History# docker volume ls
+DRIVER    VOLUME NAME
+local     7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+local     20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6
+local     a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1
+root@ip-172-31-21-215:/home/ubuntu/Transaction-History# docker inspect volume 7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+[
+    {
+        "CreatedAt": "2026-08-27T14:28:08Z",
+        "Driver": "local",
+        "Labels": {
+            "com.docker.volume.anonymous": ""
+        },
+        "Mountpoint": "/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5/_data",
+        "Name": "7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+error: no such object: volume
+root@ip-172-31-21-215:/home/ubuntu/Transaction-History# cd /var/lib/docker/volumes/
+root@ip-172-31-21-215:/var/lib/docker/volumes# ls
+20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6  a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1  metadata.db
+7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5  backingFsBlockDev
+root@ip-172-31-21-215:/var/lib/docker/volumes# cd 7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5# ls
+_data
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5# cd _data/
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5/_data# ls
+aca  bcci  ipl  mi  rcb  rj  srh
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5/_data# exit
+exit
+ubuntu@ip-172-31-21-215:~$ sudo su
+root@ip-172-31-21-215:/home/ubuntu# ls
+Transaction-History
+root@ip-172-31-21-215:/home/ubuntu# docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS                     PORTS                                             NAMES
+a551f247d8ce   ubuntu          "/bin/bash"              6 minutes ago    Exited (0) 4 minutes ago                                                     c1
+271ea5afcf72   bank-app:v1.1   "docker-entrypoint.s…"   33 minutes ago   Up 33 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp       bank
+b39418654c61   mongo:7.0.40    "docker-entrypoint.s…"   33 minutes ago   Up 33 minutes              0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   mongodb
+root@ip-172-31-21-215:/home/ubuntu# docker rm c1
+c1
+root@ip-172-31-21-215:/home/ubuntu# docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS                                             NAMES
+271ea5afcf72   bank-app:v1.1   "docker-entrypoint.s…"   33 minutes ago   Up 33 minutes   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp       bank
+b39418654c61   mongo:7.0.40    "docker-entrypoint.s…"   33 minutes ago   Up 33 minutes   0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   mongodb
+root@ip-172-31-21-215:/home/ubuntu# docker volume ls
+DRIVER    VOLUME NAME
+local     7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+local     20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6
+local     a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1
+root@ip-172-31-21-215:/home/ubuntu# cd /var/lib/docker/volumes/
+root@ip-172-31-21-215:/var/lib/docker/volumes# ls
+20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6  a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1  metadata.db
+7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5  backingFsBlockDev
+root@ip-172-31-21-215:/var/lib/docker/volumes# cd 7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5# ls
+_data
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5# cd _data/
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5/_data# ls
+aca  bcci  ipl  mi  rcb  rj  srh
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5/_data#
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5/_data#
+root@ip-172-31-21-215:/var/lib/docker/volumes/7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5/_data# exit
+exit
+ubuntu@ip-172-31-21-215:~$ sudo su
+root@ip-172-31-21-215:/home/ubuntu# ls
+Transaction-History
+root@ip-172-31-21-215:/home/ubuntu# docker run -it --name c2 -v david-volume:/flipkart ubuntu /bin/bash
+root@0c91f811a138:/# ls
+bin  boot  dev  etc  flipkart  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@0c91f811a138:/# cd flipkart/
+root@0c91f811a138:/flipkart# ls
+root@0c91f811a138:/flipkart# touch cart payment orders
+root@0c91f811a138:/flipkart# ls
+cart  orders  payment
+root@0c91f811a138:/flipkart# mkdir ind-flipkart
+root@0c91f811a138:/flipkart# ls
+cart  ind-flipkart  orders  payment
+root@0c91f811a138:/flipkart# cd ind-flipkart/
+root@0c91f811a138:/flipkart/ind-flipkart# ls
+root@0c91f811a138:/flipkart/ind-flipkart# touch mens-wear ladies-wear kidz-wear
+root@0c91f811a138:/flipkart/ind-flipkart# ls
+kidz-wear  ladies-wear  mens-wear
+root@0c91f811a138:/flipkart/ind-flipkart# cd ..
+root@0c91f811a138:/flipkart# ls
+cart  ind-flipkart  orders  payment
+root@0c91f811a138:/flipkart# exit
+exit
+root@ip-172-31-21-215:/home/ubuntu# docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS                     PORTS                                             NAMES
+0c91f811a138   ubuntu          "/bin/bash"              2 minutes ago    Exited (0) 3 seconds ago                                                     c2
+271ea5afcf72   bank-app:v1.1   "docker-entrypoint.s…"   39 minutes ago   Up 39 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp       bank
+b39418654c61   mongo:7.0.40    "docker-entrypoint.s…"   39 minutes ago   Up 39 minutes              0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   mongodb
+root@ip-172-31-21-215:/home/ubuntu# docker volume ls
+DRIVER    VOLUME NAME
+local     7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+local     20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6
+local     a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1
+local     david-volume
+root@ip-172-31-21-215:/home/ubuntu# docker inspect volume david-volume
+[
+    {
+        "CreatedAt": "2026-08-27T14:38:49Z",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/david-volume/_data",
+        "Name": "david-volume",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+error: no such object: volume
+root@ip-172-31-21-215:/home/ubuntu# cd /var/lib/docker/volumes
+root@ip-172-31-21-215:/var/lib/docker/volumes# ls
+20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6  a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1  david-volume
+7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5  backingFsBlockDev                                                 metadata.db
+root@ip-172-31-21-215:/var/lib/docker/volumes# cd david-volume/
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume# ls
+_data
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume# cd _data/
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume/_data# ls
+cart  ind-flipkart  orders  payment
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume/_data# cd ind-flipkart/
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume/_data/ind-flipkart# ls
+kidz-wear  ladies-wear  mens-wear
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume/_data/ind-flipkart# exit
+exit
+ubuntu@ip-172-31-21-215:~$ sudo su
+root@ip-172-31-21-215:/home/ubuntu# ls
+Transaction-History
+root@ip-172-31-21-215:/home/ubuntu# docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS                          PORTS                                             NAMES
+0c91f811a138   ubuntu          "/bin/bash"              3 minutes ago    Exited (0) About a minute ago                                                     c2
+271ea5afcf72   bank-app:v1.1   "docker-entrypoint.s…"   41 minutes ago   Up 41 minutes                   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp       bank
+b39418654c61   mongo:7.0.40    "docker-entrypoint.s…"   41 minutes ago   Up 41 minutes                   0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   mongodb
+root@ip-172-31-21-215:/home/ubuntu# docker rm c2
+c2
+root@ip-172-31-21-215:/home/ubuntu# docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS          PORTS                                             NAMES
+271ea5afcf72   bank-app:v1.1   "docker-entrypoint.s…"   41 minutes ago   Up 41 minutes   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp       bank
+b39418654c61   mongo:7.0.40    "docker-entrypoint.s…"   41 minutes ago   Up 41 minutes   0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   mongodb
+root@ip-172-31-21-215:/home/ubuntu# docker volume ls
+DRIVER    VOLUME NAME
+local     7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+local     20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6
+local     a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1
+local     david-volume
+root@ip-172-31-21-215:/home/ubuntu# cd /var/lib/docker/volumes
+root@ip-172-31-21-215:/var/lib/docker/volumes# ls
+20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6  a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1  david-volume
+7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5  backingFsBlockDev                                                 metadata.db
+root@ip-172-31-21-215:/var/lib/docker/volumes# cd david-volume/
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume#
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume# ls
+_data
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume# cd _data/
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume/_data# ls
+cart  ind-flipkart  orders  payment
+root@ip-172-31-21-215:/var/lib/docker/volumes/david-volume/_data# exit
+exit
+ubuntu@ip-172-31-21-215:~$ sudo su
+root@ip-172-31-21-215:/home/ubuntu# ls -la
+total 36
+drwxr-x--- 5 ubuntu ubuntu 4096 Aug 27 13:57 .
+drwxr-xr-x 3 root   root   4096 Aug 27 13:51 ..
+-rw------- 1 ubuntu ubuntu   62 Aug 27 13:53 .Xauthority
+-rw-r--r-- 1 ubuntu ubuntu  220 Feb 13  2026 .bash_logout
+-rw-r--r-- 1 ubuntu ubuntu 3771 Feb 13  2026 .bashrc
+drwx------ 2 ubuntu ubuntu 4096 Aug 27 13:53 .cache
+-rw-r--r-- 1 ubuntu ubuntu  807 Feb 13  2026 .profile
+drwx------ 2 ubuntu ubuntu 4096 Aug 27 13:51 .ssh
+drwxr-xr-x 5 root   root   4096 Aug 27 13:59 Transaction-History
+root@ip-172-31-21-215:/home/ubuntu# cd /opt/
+root@ip-172-31-21-215:/opt# ls
+containerd
+root@ip-172-31-21-215:/opt# mkdir amazon
+root@ip-172-31-21-215:/opt# ls
+amazon  containerd
+root@ip-172-31-21-215:/opt# cd amazon/
+root@ip-172-31-21-215:/opt/amazon# pwd
+/opt/amazon
+root@ip-172-31-21-215:/opt/amazon# exit
+exit
+ubuntu@ip-172-31-21-215:~$ sudo su
+root@ip-172-31-21-215:/home/ubuntu# docker run -it --name c3 -v /opt/amazon:/amazon-dir ubuntu /bin/bash
+root@d2e48413bf86:/# ls
+amazon-dir  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@d2e48413bf86:/# cd amazon-dir/
+root@d2e48413bf86:/amazon-dir# ls
+root@d2e48413bf86:/amazon-dir# touch whislist cart coupons
+root@d2e48413bf86:/amazon-dir# ls
+cart  coupons  whislist
+root@d2e48413bf86:/amazon-dir# mkdir amzon-pay prime-video
+root@d2e48413bf86:/amazon-dir# ls
+amzon-pay  cart  coupons  prime-video  whislist
+root@d2e48413bf86:/amazon-dir# exit
+exit
+root@ip-172-31-21-215:/home/ubuntu# docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED              STATUS                     PORTS                                             NAMES
+d2e48413bf86   ubuntu          "/bin/bash"              About a minute ago   Exited (0) 4 seconds ago                                                     c3
+271ea5afcf72   bank-app:v1.1   "docker-entrypoint.s…"   48 minutes ago       Up 48 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp       bank
+b39418654c61   mongo:7.0.40    "docker-entrypoint.s…"   48 minutes ago       Up 48 minutes              0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   mongodb
+root@ip-172-31-21-215:/home/ubuntu# docker volume ls
+DRIVER    VOLUME NAME
+local     7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+local     20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6
+local     a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1
+local     david-volume
+root@ip-172-31-21-215:/home/ubuntu# cd /opt/
+root@ip-172-31-21-215:/opt# ls
+amazon  containerd
+root@ip-172-31-21-215:/opt# cd amazon/
+root@ip-172-31-21-215:/opt/amazon# ls
+amzon-pay  cart  coupons  prime-video  whislist
+root@ip-172-31-21-215:/opt/amazon# docker run -it --name c4 -v ayyanna:/meesho-dir ubuntu /bin/bash
+root@62855a1d0ebb:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  meesho-dir  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@62855a1d0ebb:/# cd meesho-dir/
+root@62855a1d0ebb:/meesho-dir# ls
+root@62855a1d0ebb:/meesho-dir# touch meesho-page order-svc
+root@62855a1d0ebb:/meesho-dir# ls
+meesho-page  order-svc
+root@62855a1d0ebb:/meesho-dir# mkdir meesho-ind
+root@62855a1d0ebb:/meesho-dir# ls
+meesho-ind  meesho-page  order-svc
+root@62855a1d0ebb:/meesho-dir# exit
+exit
+root@ip-172-31-21-215:/opt/amazon# docker ps -a
+CONTAINER ID   IMAGE           COMMAND                  CREATED          STATUS                     PORTS                                             NAMES
+62855a1d0ebb   ubuntu          "/bin/bash"              59 seconds ago   Exited (0) 4 seconds ago                                                     c4
+d2e48413bf86   ubuntu          "/bin/bash"              4 minutes ago    Exited (0) 3 minutes ago                                                     c3
+271ea5afcf72   bank-app:v1.1   "docker-entrypoint.s…"   51 minutes ago   Up 51 minutes              0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp       bank
+b39418654c61   mongo:7.0.40    "docker-entrypoint.s…"   51 minutes ago   Up 51 minutes              0.0.0.0:27017->27017/tcp, [::]:27017->27017/tcp   mongodb
+root@ip-172-31-21-215:/opt/amazon# docker volume ls
+DRIVER    VOLUME NAME
+local     7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+local     20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6
+local     a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1
+local     ayyanna
+local     david-volume
+root@ip-172-31-21-215:/opt/amazon# cd /var/lib/docker/volumes
+root@ip-172-31-21-215:/var/lib/docker/volumes# ls
+20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6  ayyanna            metadata.db
+7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5  backingFsBlockDev
+a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1  david-volume
+root@ip-172-31-21-215:/var/lib/docker/volumes# cd ayyanna/
+root@ip-172-31-21-215:/var/lib/docker/volumes/ayyanna# ls
+_data
+root@ip-172-31-21-215:/var/lib/docker/volumes/ayyanna# cd _data/
+root@ip-172-31-21-215:/var/lib/docker/volumes/ayyanna/_data# ls
+meesho-ind  meesho-page  order-svc
+root@ip-172-31-21-215:/var/lib/docker/volumes/ayyanna/_data# exit
+exit
+ubuntu@ip-172-31-21-215:~$ sudo su
+root@ip-172-31-21-215:/home/ubuntu# ls
+Transaction-History
+root@ip-172-31-21-215:/home/ubuntu# docker run -it --name c5 --privileged=true --volumes-from c4 ubuntu /bin/bash
+root@3e8f7c515f1a:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  meesho-dir  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@3e8f7c515f1a:/# cd meesho-dir/
+root@3e8f7c515f1a:/meesho-dir# ls
+meesho-ind  meesho-page  order-svc
+root@3e8f7c515f1a:/meesho-dir# touch c5-file c5-demo
+root@3e8f7c515f1a:/meesho-dir# ls
+c5-demo  c5-file  meesho-ind  meesho-page  order-svc
+root@3e8f7c515f1a:/meesho-dir# mkdir c5-app
+root@3e8f7c515f1a:/meesho-dir# ls
+c5-app  c5-demo  c5-file  meesho-ind  meesho-page  order-svc
+root@3e8f7c515f1a:/meesho-dir# exit
+exit
+root@ip-172-31-21-215:/home/ubuntu# docker volume ls
+DRIVER    VOLUME NAME
+local     7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+local     20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6
+local     a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1
+local     ayyanna
+local     david-volume
+root@ip-172-31-21-215:/home/ubuntu# cd /var/lib/docker/volumes/
+root@ip-172-31-21-215:/var/lib/docker/volumes# ls
+20925aa556ac6d4dc6b58945f296f262e65b7181103955ea9badc466286dd3a6  ayyanna            metadata.db
+7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5  backingFsBlockDev
+a3ff1ba94fadf0bd2aca211fe6ab1a629f954a579f2f2d8931e7992783527ed1  david-volume
+root@ip-172-31-21-215:/var/lib/docker/volumes# cd ayyanna/
+root@ip-172-31-21-215:/var/lib/docker/volumes/ayyanna# ls
+_data
+root@ip-172-31-21-215:/var/lib/docker/volumes/ayyanna# cd _data/
+root@ip-172-31-21-215:/var/lib/docker/volumes/ayyanna/_data# ls
+c5-app  c5-demo  c5-file  meesho-ind  meesho-page  order-svc
+
+# docker volumes plane commands
+    1  apt update -y
+    2  docker
+    3  apt install docker.io -y
+    4  docker-compose --version
+    5  apt install docker-compose -y
+    6  docker-compose --version
+    7  docker-compose version
+    8  sudo apt-get update
+    9  sudo apt-get install docker-compose-plugin
+   10  sudo apt-get update -y
+   11  sudo apt-get install docker-compose-plugin -y
+   12  docker compose version
+   13  ls
+   14  git clone https://github.com/Davidgit526/Transaction-History.git
+   15  ls
+   16  cd Transaction-History/
+   17  ls
+   18  cat docker-compose.yml
+   19  ls
+   20  nano docker-compose.yml
+   21  ls
+   22  docker compose up -d
+   23  docker images
+   24  docker ps
+   25  docker exec -it mongodb mongosh
+   26  ls
+   27  docker volume ls
+   28  docker run -it --name c1 -v /demo-volume ubuntu /bin/bash
+   29  docker ps
+   30  docker ps -a
+   31  docker volume ls
+   32  docker inspect volume 7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+   33  cd /var/lib/docker/volumes/
+   34  ls
+   35  cd 7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+   36  ls
+   37  cd _data/
+   38  ls
+   39  exit
+   40  ls
+   41  docker ps -a
+   42  docker rm c1
+   43  docker ps -a
+   44  docker volume ls
+   45  cd /var/lib/docker/volumes/
+   46  ls
+   47  cd 7d04e9cd28d7e9a872ac89a5dd873c90d5b9fc05a574b216a06f29055544a2f5
+   48  ls
+   49  cd _data/
+   50  ls
+   51  exit
+   52  ls
+   53  docker run -it --name c2 -v david-volume:/flipkart ubuntu /bin/bash
+   54  docker ps -a
+   55  docker volume ls
+   56  docker inspect volume david-volume
+   57  cd /var/lib/docker/volumes
+   58  ls
+   59  cd david-volume/
+   60  ls
+   61  cd _data/
+   62  ls
+   63  cd ind-flipkart/
+   64  ls
+   65  exit
+   66  ls
+   67  docker ps -a
+   68  docker rm c2
+   69  docker ps -a
+   70  docker volume ls
+   71  cd /var/lib/docker/volumes
+   72  ls
+   73  cd david-volume/
+   74  ls
+   75  cd _data/
+   76  ls
+   77  exit
+   78  ls -la
+   79  cd /opt/
+   80  ls
+   81  mkdir amazon
+   82  ls
+   83  cd amazon/
+   84  pwd
+   85  exit
+   86  docker run -it --name c3 -v /opt/amazon:/amazon-dir ubuntu /bin/bash
+   87  docker ps -a
+   88  docker volume ls
+   89  cd /opt/
+   90  ls
+   91  cd amazon/
+   92  ls
+   93  docker run -it --name c4 -v ayyanna:/meesho-dir ubuntu /bin/bash
+   94  docker ps -a
+   95  docker volume ls
+   96  cd /var/lib/docker/volumes
+   97  ls
+   98  cd ayyanna/
+   99  ls
+  100  cd _data/
+  101  ls
+  102  exit
+  103  ls
+  104  docker run -it --name c5 --privileged=true --volumes-from c4 ubuntu /bin/bash
+  105  docker volume ls
+  106  cd /var/lib/docker/volumes/
+  107  ls
+  108  cd ayyanna/
+  109  ls
+  110  cd _data/
+  111  ls
+  112  history
+
+# docker network commands
+  118  docker network ls
+  119  docker compose up -d
+  120  docker network ls
+  121  history
+
+# docker volume notes
+
+Why docker volumes?
+==================
+
+	Ø If the application is down wt will happen? --> app can't access, you may lose app data, files, folders, imp info etc.
+
+Wt is docker volumes?
+==================
+
+	Ø Whenever your container will restart, crashed, goes down, not running still you can access your app data by docker volumes
+	Ø Docker volumes will persist you app data even if your container got deleted.
+	Ø Volumes is nothing but it’s a directory it means you are going to declare a directory as a volume.
+	Ø Docker volumes will be created out of the file system it means volumes will not create inside the container.
+	Ø It is better to create volumes along with the container becz after creation of container it is difficult to attach a volume to the container.
+	Ø You can share one volume with no.of containers.
+
+Docker volume types
+=================
+
+	Ø Docker has 3 type of volumes
+
+	1. Anonymous volume --> it means there will be no meaningful name to the volume.
+	2. Named volume --> it means you will be having a meaningful name to the volume.
+	3. Bind Volume --> it means you are going to choose the location where you want to save your app data.
+
+docker run -it --name c5 --privileged=true --volumes-from c4 ubuntu /bin/bash
+
+--privileged=true --> you are giving authorization to access the volume which is available in c4 container.
+
+ --volumes-from --> 
+
+
+
+C5 -- ayyanna, c4 - your frd Sunil
+
+# Docker network notes
+
+Wt is network?
+=============
+	Ø It means to establish a communication between servers, people or machines.
+
+Why Docker network?
+==================
+
+Wt is Docker network?
+===================
+
+	Ø Docker network has 3 types
+
+	1. Bridge network  --> containers will get ip add and it is for prod use
+	2. Host network  --> containers will not get ip add and it is for test purpose
+	3. None network --> containers completely will be in isolated env and there is no internet access to the containers and it is used for databases to keep secure data.
