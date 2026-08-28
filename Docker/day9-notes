@@ -1,0 +1,9 @@
+Day9-Docker-draw-backs
+
+28 August 2026
+19:29
+
+	1. Containers are light weight  --> means they are sensitive if you put more load on top of containers container may go down or crash.
+	2. Docker will not support auto-healing 
+	3. Docker will not support LB
+Docker will not auto-scaling --> depends on the app traffic or demand app has to be increase servers or containers and decrease servers or containers automatically 
