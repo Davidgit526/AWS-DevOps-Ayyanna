@@ -1,0 +1,72 @@
+    1  kubectl get ns
+    2  ls
+    3  vi my-ns.yaml
+    4  ls
+    5  cat my-ns.yaml 
+    6  ls
+    7  kubectl apply -f my-ns.yaml 
+    8  kubectl get ns
+    9  vi my-ns.yaml 
+   10  ls
+   11  cat my-ns.yaml 
+   12  kubectl apply -f my-ns.yaml 
+   13  vi my-ns.yaml 
+   14  ls
+   15  cat my-ns.yaml 
+   16  kubectl apply -f my-ns.yaml 
+   17  kubectl get ns
+   18  kubectl delete ns amazon-ns
+   19  kubectl get ns
+   20  kubectl delete ns meesho-ns
+   21  kubectl get ns
+   22  kubectl create ns ipl-ns
+   23  kubectl get ns
+   24  vi ipl-pod.yaml
+   25  ls
+   26  cat ipl-pod.yaml 
+   27  ls
+   28  kubectl get pods
+   29  kubectl get pods -n ipl-ns
+   30  kubectl get pods
+   31  kubectl apply -f ipl-pod.yaml 
+   32  kubectl get pods
+   33  kubectl get pods -n ipl-ns
+   34  ls
+   35  kubectl logs ipl-pod -n ipl-ns
+   36  kubectl describe pod ipl-pod -n ipl-ns
+   37  vi ipl-pod.yaml 
+   38  cat ipl-pod.yaml 
+   39  kubectl get pod -n ipl-ns
+   40  kubectl apply -f ipl-pod.yaml 
+   41  kubectl get pod -n ipl-ns
+   42  kubectl apply -f ipl-pod.yaml 
+   43  kubectl get pod -n ipl-ns
+   44  kubectl logs pod ipl-pod -n ipl-ns
+   45  kubectl logs ipl-pod -n ipl-ns
+   46  kubectl describe pod ipl-pod -n ipl-ns 
+   47  vi ipl-pod.yaml 
+   48  kubectl apply -f ipl-pod.yaml 
+   49  kubectl get pod -n ipl-ns
+
+
+   # Pod notes
+
+   	1. Crashloopbackoff:-  in a pod container repeatedly crashing
+	2. Imagepullbackoff:-  pod unable to pull the docker image from docker registry
+	3. OOMkilled:- pod is running with out of memory 
+
+Pod Lifecycle
+===========
+
+	1. Pending
+	2. Running
+	3. Succeeded
+	4. Failed
+	5. Unknown 
+
+Container phases
+==============
+
+	1. Waiting
+	2. Running
+	3. Terminated

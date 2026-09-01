@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: ipl-replicaset
+  namespace: ipl-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ipl
+  template:
+    metadata:
+      labels:
+        app: ipl
+    spec:
+      containers:
+        - name: ipl-container
+          image: daviddocker526/ipl-srh:latest
+          ports:
+            - containerPort: 80

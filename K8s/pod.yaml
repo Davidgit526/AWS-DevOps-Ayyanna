@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ipl-pod
+  namespace: ipl-ns
+spec:
+  containers:
+    - name: ipl-container
+      image: daviddocker526/ipl-srh:latest
+      ports:
+        - containerPort: 80
